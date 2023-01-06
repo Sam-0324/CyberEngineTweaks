@@ -283,8 +283,7 @@ bool D3D12::InitializeImGui(size_t aBuffersCounts)
     std::lock_guard _(m_imguiLock);
 
     // TODO - scale also by DPI
-    const auto [resx, resy] = m_outSize;
-    const auto scaleFromReference = std::min(static_cast<float>(resx) / 1920.0f, static_cast<float>(resy) / 1080.0f);
+    const auto scaleFromReference = GetScaleFactor();
 
     if (ImGui::GetCurrentContext() == nullptr)
     {
