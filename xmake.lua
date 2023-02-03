@@ -58,7 +58,6 @@ local imguiUserConfig = path.absolute("src/imgui_impl/imgui_user_config.h")
 add_requires("imgui v1.88-docking", { configs = { wchar32 = true, freetype = true, user_config = imguiUserConfig } })
 
 add_requires("fmt")
-add_repositories("local-repo vendor/xmake-local")
 add_requires("scnlib 1.1.2")
 
 target("RED4ext.SDK")
