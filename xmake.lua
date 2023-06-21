@@ -53,12 +53,10 @@ add_requires("xbyak")
 add_requires("stb")
 add_requires("sol2", { configs = { includes_lua = false } })
 add_requires("openrestry-luajit", { configs = { gc64 = true } })
+add_requires("scnlib 1.1.2")
 
 local imguiUserConfig = path.absolute("src/imgui_impl/imgui_user_config.h")
 add_requires("imgui v1.88-docking", { configs = { wchar32 = true, freetype = true, user_config = imguiUserConfig } })
-
-add_requires("fmt")
-add_requires("scnlib 1.1.2")
 
 target("RED4ext.SDK")
     set_kind("static")
@@ -77,7 +75,7 @@ target("cyber_engine_tweaks")
     add_headerfiles("src/**.h", "build/CETVersion.h")
     add_includedirs("src/", "build/")
     add_syslinks("User32", "Version", "d3d11", "Dwrite")
-    add_packages("spdlog", "nlohmann_json", "minhook", "hopscotch-map", "imgui", "mem", "sol2", "tiltedcore", "sqlite3", "openrestry-luajit", "xbyak", "stb", "fmt", "scnlib")
+    add_packages("spdlog", "nlohmann_json", "minhook", "hopscotch-map", "imgui", "mem", "sol2", "tiltedcore", "sqlite3", "openrestry-luajit", "xbyak", "stb", "scnlib")
     add_deps("RED4ext.SDK")
     add_configfiles("src/CETVersion.h.in")
 

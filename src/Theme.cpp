@@ -1,6 +1,5 @@
 #include "stdafx.h"
 
-#include <fmt/core.h>
 #include <scn/scn.h>
 
 #include "Utils.h"
