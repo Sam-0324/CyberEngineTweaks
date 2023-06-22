@@ -306,12 +306,9 @@ bool D3D12::InitializeImGui(size_t aBuffersCounts)
         m_styleReference.TabRounding = 6.0f;
 
         // Got an override?
-        bool loadedTheme = LoadStyleFromThemeJson(m_paths.Theme(), m_styleReference);
-
-        if (!loadedTheme)
+        if (!LoadStyleFromThemeJson(m_paths.Theme(), m_styleReference))
             Log::Info("Theme: no theme loaded, using basic CET defaults!");
 
-        Log::Info("Theme: ImGui style in effect: {}", DumpStyleToThemeJson(m_styleReference));
         Log::Info("Theme: Global UI scale factor: {}x", scaleFromReference);
     }
 
@@ -352,6 +349,17 @@ void D3D12::PrepareUpdate()
         return;
 
     std::lock_guard _(m_imguiLock);
+
+    if (!m_nextStyleFilepath.empty())
+    {
+        if (DumpStyleToThemeJson(m_nextStyleFilepath, ImGui::GetStyle()))
+        {
+            m_currentStyleFilepath = m_nextStyleFilepath;
+            m_nextStyleFilepath.clear();
+        }
+        else
+            Log::Info("Theme: theme not saved!");
+    }
 
     m_fonts.RebuildFonts(m_pCommandQueue.Get(), m_outSize);
 

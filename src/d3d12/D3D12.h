@@ -22,6 +22,9 @@ struct D3D12
 
     void SetTrapInputInImGui(const bool acEnabled);
     void DelayedSetTrapInputInImGui(const bool acEnabled);
+
+    void DumpCurrentTheme(const std::filesystem::path& acThemePath);
+
     [[nodiscard]] bool IsTrapInputInImGui() const noexcept { return m_trapInputInImGui; }
     [[nodiscard]] bool IsInitialized() const noexcept { return m_initialized; }
     [[nodiscard]] SIZE GetResolution() const noexcept { return m_outSize; }
@@ -97,6 +100,8 @@ private:
 
     std::atomic_bool m_trapInputInImGui{false};
     ImGuiStyle m_styleReference{};
+    std::filesystem::path m_currentStyleFilepath;
+    std::filesystem::path m_nextStyleFilepath;
 
     Paths& m_paths;
     Window& m_window;

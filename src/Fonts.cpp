@@ -258,7 +258,6 @@ void Fonts::BuildFonts(const SIZE& acOutSize)
 // Call before ImGui_ImplXXXX_NewFrame()
 void Fonts::RebuildFonts(ID3D12CommandQueue* apCommandQueue, const SIZE& acOutSize)
 {
-
     if (m_rebuildFonts || m_glyphRangesBuilder.NeedsRebuild()) // Rebuild when font settings changed or glyph ranges changed
     {
         BuildFonts(acOutSize);
@@ -268,7 +267,7 @@ void Fonts::RebuildFonts(ID3D12CommandQueue* apCommandQueue, const SIZE& acOutSi
     }
 }
 
-// Call from imgui to trgger RebuildFonts in the next frame
+// Call from imgui to trigger RebuildFonts in the next frame
 void Fonts::RebuildFontNextFrame()
 {
     m_rebuildFonts = true;

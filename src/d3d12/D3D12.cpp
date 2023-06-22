@@ -30,6 +30,12 @@ void D3D12::DelayedSetTrapInputInImGui(const bool acEnabled)
     m_delayedTrapInput = true;
 }
 
+void D3D12::DumpCurrentTheme(const std::filesystem::path& acThemePath)
+{
+    std::lock_guard sync(m_imguiLock);
+    m_nextStyleFilepath = acThemePath.empty() ? m_paths.Theme() : (m_paths.CETRoot() / acThemePath);
+}
+
 LRESULT D3D12::OnWndProc(HWND ahWnd, UINT auMsg, WPARAM awParam, LPARAM alParam) const
 {
     auto& d3d12 = CET::Get().GetD3D12();

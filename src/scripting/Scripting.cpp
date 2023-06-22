@@ -76,7 +76,7 @@ void Scripting::Initialize()
     sol_ImGui::InitBindings(luaVm, globals);
     sol::table imgui = globals["ImGui"];
     Texture::BindTexture(imgui);
-    
+
     imgui["GetMonoFont"] = [this]() -> ImFont*
     {
         return m_fonts.MonoFont;
@@ -146,6 +146,11 @@ void Scripting::Initialize()
     globals["GetScaleFactor"] = [this]() -> float
     {
         return m_d3d12.GetScaleFactor();
+    };
+
+    globals["DumpCurrentTheme"] = [this](const std::string& acThemePath) -> void
+    {
+        m_d3d12.DumpCurrentTheme(acThemePath);
     };
 
     globals["ModArchiveExists"] = [this](const std::string& acArchiveName) -> bool

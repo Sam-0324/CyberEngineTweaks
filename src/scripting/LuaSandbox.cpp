@@ -49,6 +49,7 @@ static constexpr const char* s_cGlobalObjectsWhitelist[] = {
     "AddTextGlyphs",
     "GetScaleFactor",
     "ModArchiveExists",
+    "DumpCurrentTheme",
 
     "ImGuiListClipper",
     "ImGuiCond",

@@ -9,4 +9,4 @@
 bool LoadStyleFromThemeJson(const std::filesystem::path& aThemePath, ImGuiStyle& aOutStyle);
 
 // Dump ImGui style into a JSON string with some extra metadata. Can be saved.
-const std::string DumpStyleToThemeJson(const ImGuiStyle& aStyle);
+bool DumpStyleToThemeJson(const std::filesystem::path& aThemePath, const ImGuiStyle& aStyle);
