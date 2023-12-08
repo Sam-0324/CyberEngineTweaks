@@ -15,7 +15,7 @@ spdlog::sink_ptr CreateCustomSinkST(const std::function<void(const std::string&)
 spdlog::sink_ptr CreateCustomSinkMT(const std::function<void(const std::string&)>& acpSinkItHandler, const std::function<void()>& acpFlushHandler = nullptr);
 std::shared_ptr<spdlog::logger> CreateLogger(
     const std::filesystem::path& acpPath, const std::string& acpID, const spdlog::sink_ptr& acpExtraSink = nullptr,
-    const std::string& acpPattern = "[%Y-%m-%d %H:%M:%S.%e UTC%z] [%t|%l] %v", const size_t acMaxFileSize = 5 * 1024 * 1024, const size_t acMaxFileCount = 3);
+    const std::string& acpPattern = "[%Y-%m-%d %H:%M:%S.%e UTC%z] [Thread_%t/%l] %v", const size_t acMaxFileSize = 5 * 1024 * 1024, const size_t acMaxFileCount = 3);
 
 // deep copies sol object (doesnt take into account potential duplicates)
 sol::object DeepCopySolObject(const sol::object& acpObj, const sol::state_view& acpStateView);
