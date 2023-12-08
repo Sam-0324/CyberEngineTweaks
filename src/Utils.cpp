@@ -110,12 +110,8 @@ std::shared_ptr<spdlog::logger> CreateLogger(
 
     if (acpExtraSink)
         logger->sinks().emplace_back(acpExtraSink);
-
-#ifdef CET_DEBUG
+    
     logger->flush_on(spdlog::level::trace);
-#else
-    logger->flush_on(spdlog::level::warn);
-#endif
 
     register_logger(logger);
     return logger;
