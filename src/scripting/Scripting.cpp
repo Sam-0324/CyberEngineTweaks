@@ -469,7 +469,6 @@ void Scripting::PostInitializeScripting()
         logger->info("Dumped {} types", count);
     };
 
-#ifdef CET_DEBUG
     globals["DumpVtables"] = [this]
     {
         // Hacky RTTI dump, this should technically only dump IScriptable instances and RTTI types as they are
@@ -479,7 +478,6 @@ void Scripting::PostInitializeScripting()
         // there are classes that instantiate a parent class but don't actually have a subclass instance
         GameMainThread::Get().AddRunningTask(&GameDump::DumpVTablesTask::Run);
     };
-#endif
 
     globals["Game"] = this;
 
