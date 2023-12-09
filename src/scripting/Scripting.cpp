@@ -21,11 +21,9 @@
 #include <sol_imgui/sol_imgui.h>
 #include <Utils.h>
 
-#ifdef CET_DEBUG
 #include "GameHooks.h"
 #include "GameDump.h"
 #include <RED4ext/Dump/Reflection.hpp>
-#endif
 
 static constexpr bool s_cThrowLuaErrors = true;
 
