@@ -21,9 +21,11 @@
 #include <sol_imgui/sol_imgui.h>
 #include <Utils.h>
 
+#ifdef CET_DEBUG
 #include "GameHooks.h"
 #include "GameDump.h"
 #include <RED4ext/Dump/Reflection.hpp>
+#endif
 
 static constexpr bool s_cThrowLuaErrors = true;
 
@@ -467,6 +469,7 @@ void Scripting::PostInitializeScripting()
         logger->info("Dumped {} types", count);
     };
 
+#ifdef CET_DEBUG
     globals["DumpVtables"] = [this]
     {
         // Hacky RTTI dump, this should technically only dump IScriptable instances and RTTI types as they are
@@ -476,6 +479,7 @@ void Scripting::PostInitializeScripting()
         // there are classes that instantiate a parent class but don't actually have a subclass instance
         GameMainThread::Get().AddRunningTask(&GameDump::DumpVTablesTask::Run);
     };
+#endif
 
     globals["Game"] = this;
 
